@@ -1,0 +1,44 @@
+---
+- name: Download oc client
+  ansible.builtin.get_url:
+    url: "{{ k8stools_oc_binary_url }}"
+    dest: /tmp/oc.tar.gz
+    mode: '0777'
+    checksum: "{{ k8stools_oc_checksum }}"
+  tags:
+    - k8stools
+    - k8stools.oc
+    - k8stools.kubectl
+
+- name: Extract oc client
+  ansible.builtin.unarchive:
+    src: /tmp/oc.tar.gz
+    dest: /tmp/
+    remote_src: true
+  tags:
+    - k8stools
+    - k8stools.oc
+    - k8stools.kubectl
+
+- name: Copy oc binary to /usr/local/bin
+  ansible.builtin.copy:
+    src: /tmp/oc
+    dest: /usr/local/bin/oc
+    mode: "0777"
+    remote_src: true
+  tags:
+    - k8stools
+    - k8stools.oc
+    - k8stools.kubectl
+
+- name: Copy kubectl binary to /usr/local/bin
+  ansible.builtin.copy:
+    src: /tmp/kubectl
+    dest: /usr/local/bin/kubectl
+    mode: "0777"
+    remote_src: true
+  tags:
+    - k8stools
+    - k8stools.oc
+    - k8stools.kubectl
+...

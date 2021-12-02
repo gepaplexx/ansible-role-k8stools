@@ -1,0 +1,25 @@
+---
+- name: Verify
+  hosts: instance
+  gather_facts: false
+  tasks:
+    - name: Check oc
+      ansible.builtin.command:
+        cmd: oc help
+        changed_when: false
+
+    - name: Check kubectl
+      ansible.builtin.command:
+        cmd: kubectl help
+        changed_when: false
+
+    - name: Check helm
+      ansible.builtin.command:
+        cmd: helm help
+        changed_when: false
+
+    - name: Check velero
+      ansible.builtin.command:
+        cmd: velero help
+        changed_when: false
+...

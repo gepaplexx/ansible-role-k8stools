@@ -1,0 +1,30 @@
+---
+- name: Download helm binary
+  ansible.builtin.get_url:
+    url: "{{ k8stools_helm_binary_url }}"
+    dest: /tmp/helm.tar.gz
+    mode: '0777'
+    checksum: '{{ k8stools_helm_checksum }}'
+  tags:
+    - k8stools
+    - k8stools.helm
+
+- name: Extract helm binary
+  ansible.builtin.unarchive:
+    src: /tmp/helm.tar.gz
+    dest: /tmp/
+    remote_src: true
+  tags:
+    - k8stools
+    - k8stools.helm
+
+- name: Copy helm binary to /usr/local/bin
+  ansible.builtin.copy:
+    src: /tmp/helm
+    dest: /usr/local/bin/helm
+    mode: "0777"
+    remote_src: true
+  tags:
+    - k8stools
+    - k8stools.helm
+...

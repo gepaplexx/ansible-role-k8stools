@@ -1,0 +1,30 @@
+---
+- name: Download velero binary
+  ansible.builtin.get_url:
+    url: "{{ k8stools_velero_binary_url }}"
+    dest: /tmp/velero.tar.gz
+    mode: '0777'
+    checksum: '{{ k8stools_velero_checksum }}'
+  tags:
+    - k8stools
+    - k8stools.velero
+
+- name: Extract velero binary
+  ansible.builtin.unarchive:
+    src: /tmp/velero.tar.gz
+    dest: /tmp/
+    remote_src: true
+  tags:
+    - k8stools
+    - k8stools.velero
+
+- name: Copy velero binary to /usr/local/bin
+  ansible.builtin.copy:
+    src: "/tmp/{{ k8stools_velero_filename }}/velero"
+    dest: /usr/local/bin/velero
+    mode: "0777"
+    remote_src: true
+  tags:
+    - k8stools
+    - k8stools.velero
+...

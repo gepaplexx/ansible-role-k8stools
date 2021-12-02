@@ -1,0 +1,16 @@
+---
+dependencies: []
+
+galaxy_info:
+  role_name: k8stools
+  author: Marcel Haupt
+  namespace: gepaplexx
+  description: Ansible Role to install K8s tools
+  license: MIT
+  min_ansible_version: "2.10"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+  galaxy_tags: []
+...

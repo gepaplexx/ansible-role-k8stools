@@ -1,0 +1,11 @@
+---
+- name: Install OC
+  include_tasks:
+    file: oc.yml
+- name: Install Helm
+  include_tasks:
+    file: helm.yml
+- name: Install Velero
+  include_tasks:
+    file: velero.yml
+...
