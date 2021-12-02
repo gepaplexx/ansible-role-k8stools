@@ -12,14 +12,31 @@ k8stools_helm_checksum_url: "{{ k8stools_helm_path }}/sha256sum.txt"
 
 k8stools_velero_version: "v1.7.1"
 k8stools_velero_filename: "velero-{{ k8stools_velero_version }}-linux-amd64"
-k8stools_velero_binary_url: "https://github.com/vmware-tanzu/velero/releases/download/{{ k8stools_velero_version }}/{{ k8stools_velero_filename }}.tar.gz"
-k8stools_velero_checksum: "sha256:5dd1e619a3a182d539f081a468a8e6118d3a6c50436c36315bdb2e33b5398adf"
+k8stools_velero_binary_url: >-
+  https://
+  github.com
+  /vmware-tanzu
+  /velero
+  /releases
+  /download/
+  {{ k8stools_velero_version }}
+  /{{ k8stools_velero_filename }}.tar.gz
+k8stools_velero_checksum: >-
+  sha256:5dd1e619a3a182d539f081a468a8e6118d3a6c50436c36315bdb2e33b5398adf
 
 ## checksums
 ## todo: design checksum check for oc
 k8stools_oc_checksum_file: "{{ lookup('url', k8stools_oc_checksum_url) }}"
-k8stools_oc_checksum: "sha256:{{ k8stools_oc_checksum_file | regex_search('([0-9a-f]+)  openshift-client-linux.*', '\\1') | first }}"
+k8stools_oc_checksum: >-
+  sha256:
+  {{ k8stools_oc_checksum_file
+  | regex_search('([0-9a-f]+)  openshift-client-linux.*', '\\1')
+  | first }}
 
 k8stools_helm_checksum_file: "{{ lookup('url', k8stools_helm_checksum_url) }}"
-k8stools_helm_checksum: "sha256:{{ k8stools_helm_checksum_file | regex_search('([0-9a-f]+)  helm-linux-amd64\\.tar\\.gz', '\\1') | first }}"
+k8stools_helm_checksum: >-
+  sha256:
+  {{ k8stools_helm_checksum_file
+  | regex_search('([0-9a-f]+)  helm-linux-amd64\\.tar\\.gz', '\\1')
+  | first }}
 ...
