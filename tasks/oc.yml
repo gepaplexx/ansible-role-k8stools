@@ -1,10 +1,4 @@
 ---
-- name: debug
-  debug:
-    var: k8stools_oc_checksum_file
-- name: debug
-  debug:
-    var: k8stools_oc_checksum
 - name: Download oc client
   ansible.builtin.get_url:
     url: "{{ k8stools_oc_binary_url }}"
