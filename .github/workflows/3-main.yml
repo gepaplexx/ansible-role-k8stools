@@ -89,7 +89,7 @@ jobs:
       - ansible-linter
       - pre-commit
       - yaml-linter
-      #- molecule
+      - molecule
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
