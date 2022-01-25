@@ -2,7 +2,7 @@
 # skip_ansible_lint
 openshift_mirror_url: "https://mirror.openshift.com/pub/openshift-v4"
 
-k8stools_oc_path: "{{ openshift_mirror_url }}/x86_64/clients/ocp/stable/"
+k8stools_oc_path: "{{ openshift_mirror_url }}/x86_64/clients/ocp/stable"
 k8stools_oc_binary_url: "{{ k8stools_oc_path }}/openshift-client-linux.tar.gz"
 k8stools_oc_checksum_url: "{{ k8stools_oc_path }}/sha256sum.txt"
 
